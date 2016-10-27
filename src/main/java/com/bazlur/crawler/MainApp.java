@@ -11,7 +11,7 @@ public class MainApp {
 
 		Crawler crawler = new Crawler(url -> url.startsWith(urlToCrawl));
 		crawler.addUrl(urlToCrawl);
-		crawler.addPageProcessors(new SaveOnDiskProcessor());
+		crawler.addPageProcessors(new SaveOnDiskProcessor("tmp"));
 		crawler.crawl();
 	}
 }

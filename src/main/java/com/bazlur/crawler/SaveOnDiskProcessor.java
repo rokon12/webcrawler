@@ -18,6 +18,12 @@ import java.nio.charset.StandardCharsets;
 public class SaveOnDiskProcessor implements PageProcessor {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SaveOnDiskProcessor.class);
 
+	private String baseDir;
+
+	public SaveOnDiskProcessor(String baseDir) {
+		this.baseDir = baseDir;
+	}
+
 	@Override
 	public void process(Document document) {
 		String title = document.title();
@@ -27,7 +33,7 @@ public class SaveOnDiskProcessor implements PageProcessor {
 		String text = document.text();
 		InputStream inputStream = new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8));
 
-		File outputFile = new File("tmp/" + title + ".html");
+		File outputFile = new File(baseDir+ File.separator + title + ".html");
 		try (FileChannel out = new FileOutputStream(outputFile).getChannel();
 		     ReadableByteChannel source = Channels.newChannel(inputStream)) {
 
