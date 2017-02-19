@@ -45,7 +45,7 @@ public class SaveOnDiskProcessor implements PageProcessor {
 				buffer.clear();
 			}
 		} catch (IOException e) {
-			LOGGER.info("Could not save info in file:{}");
+			LOGGER.info("Could not save info in file because :{}", e.getMessage());
 		}
 	}
 }

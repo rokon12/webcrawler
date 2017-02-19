@@ -115,8 +115,7 @@ public class Crawler {
 		return !(this.urlFilter != null
 			&& !this.urlFilter.include(nextUrl))
 			&& !this.crawledUrls.contains(nextUrl)
-			&& !Stream.of(URL_STARTS_WITH).anyMatch(nextUrl::startsWith)
-			&& !Stream.of(URL_ENDS_WITH).anyMatch(nextUrl::startsWith);
-
+			&& Stream.of(URL_STARTS_WITH).noneMatch(nextUrl::startsWith)
+			&& Stream.of(URL_ENDS_WITH).noneMatch(nextUrl::startsWith);
 	}
 }
